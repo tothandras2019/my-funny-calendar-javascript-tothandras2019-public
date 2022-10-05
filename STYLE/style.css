@@ -1,0 +1,508 @@
+/* #region GENERAL SETTINGS */
+:root {
+    --main-bg-color: rgb(198, 192, 177);
+    --cream-white-bg-color: rgb(227, 211, 173);
+    --day-bg-color: rgb(163, 163, 163);
+    --calendar-aside-color: rgb(186, 150, 21);
+    --letter-dark-color: rgb(39, 39, 39);
+    --one-month-color: rgb(238, 232, 215);
+    --five-month-color: rgb(248, 232, 188);
+    --six-month-color: rgb(247, 223, 155);
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@100;500;900&family=Work+Sans:wght@300&display=swap");
+
+body {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    /* color: rgb(231, 235, 240); */
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-weight: 100;
+    text-align: center;
+    color: var(--letter-dark-color);
+    background-color: var(--main-bg-color);
+}
+
+h1 {
+    font-size: 70px;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+h3 {
+    font-size: 40px;
+}
+
+/* header {
+    height: 15vh;
+} */
+
+#root {
+    display: flex;
+    justify-content: center;
+    margin: 0%;
+}
+
+.left--side {
+    min-width: 30%;
+    margin: 0%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--calendar-aside-color);
+}
+.calendar-aside {
+    width: 100%;
+}
+
+.calendar-aside > div {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    border-style: solid;
+    border-left-color: var(--main-bg-color);
+    border-left-width: 3px;
+    margin: 50px 50px;
+    padding-left: 30px;
+}
+
+.calendar-aside > div > p {
+    text-align: start;
+}
+
+.calendar--logo {
+    display: flex;
+    flex-direction: column;
+
+    width: 150px;
+    height: 150px;
+    margin-bottom: 50px;
+    /* background-image: url("/ICONS/calendar.png");
+    background-repeat: no-repeat;
+    background-size: contain; */
+
+    background-color: rgba(96, 84, 6, 1);
+    color: var(--cream-white-bg-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 50%;
+    /* text-align: center; */
+}
+
+.calendar--logo > .pointed-day {
+    font-size: 14px;
+    color: var(--day-bg-color);
+}
+
+.calendar-year-large {
+    font-size: 65px;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.calendar-month-large {
+    color: var(--main-bg-color);
+    font-size: 90px;
+    width: fit-content;
+}
+
+.calendar-day-large {
+    font-size: 55px;
+    font-weight: bold;
+    width: fit-content;
+}
+.months--container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0%;
+    justify-content: space-evenly;
+    width: 70%;
+    margin: 0.1rem;
+}
+
+.full--side {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--cream-white-bg-color);
+    border-radius: 3px;
+    margin: 0.5%;
+    min-width: 30%;
+    width: 100%;
+    max-height: 100%;
+    /*DEFAULT BACKGROUND COLOR*/
+    background-color: var(--main-bg-color);
+    font-size: 4rem;
+}
+
+.month-name {
+    text-align: center;
+    /* font-size: 2rem; */
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.month {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--cream-white-bg-color);
+    border-radius: 3px;
+    margin: 0.1%;
+    min-width: 30%;
+    /* width: 100%; */
+    max-width: 100%;
+    max-height: 25%;
+    /*DEFAULT BACKGROUND COLOR*/
+    background-color: var(--main-bg-color);
+    transition: all 0.5s;
+}
+.month:hover {
+    transform: scale(110%, 101%);
+}
+
+/* #endregion GENERAL SETTINGS */
+/* #region CONTINOUS BACKGROUNDCOLOR CHANGER START: */
+@keyframes bgColorChanager {
+    2% {
+        background-color: var(--cream-white-bg-color);
+    }
+    30% {
+        background-color: var(--calendar-aside-color);
+    }
+    25% {
+        background-color: var(--letter-dark-color);
+    }
+    /* 70% {
+        background-color: rgb(141, 60, 85);
+    }
+    40% {
+        background-color: rgb(227, 205, 61);
+    } */
+}
+/* .month {
+    animation-name: bgColorChanager;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+} */
+/* #endregion CONTINOUS BACKGROUNDCOLOR CHANGER END: */
+/* #region INDIVIDUAL SETTINGS */
+/* .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1%;
+    align-content: top;
+    justify-content: center;
+} */
+
+.cards-container,
+.days-name {
+    /* ORIGINAL: */
+    display: grid;
+    grid-template-columns: repeat(7, 12%);
+    row-gap: 0.1%;
+    column-gap: 0.5%;
+    align-content: top;
+    justify-content: center;
+    padding: 1%;
+}
+
+/* .card general */
+.day,
+.placeholder,
+.day-name {
+    background-color: var(--day-bg-color);
+    width: 70%;
+    height: 70%;
+    display: flex;
+    /* font-size: 1rem; */
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(204, 210, 210, 0.2);
+    margin: 3px;
+}
+
+.day {
+    transition: transform 1s;
+}
+
+.placeholder {
+    background-color: rgb(139, 129, 129, 0.5);
+}
+
+.day-name {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    letter-spacing: 1.5px;
+    /* width: 70%; */
+    margin: 3px;
+    margin-top: 10px;
+    font-size: inherit;
+    font-weight: bold;
+}
+
+.day:hover {
+    background-color: rgb(140, 39, 39);
+    color: burlywood;
+    transform: rotate3d(0, 1, 0, 360deg);
+}
+
+time {
+    text-align: center;
+    padding-top: 5px;
+}
+
+/* MONTH_SIX-------------------------- */
+
+.month_six {
+    background-color: var(--six-month-color);
+}
+
+/* DEFAULT SETTING on SIX MONTH :
+.cards-container,
+.days-name {
+    display: grid;
+    grid-template-columns: repeat(7, 12%);
+    row-gap: 0.1%;
+    column-gap: 0.5%;
+    align-content: top;
+    justify-content: center;
+    padding: 1%;
+} */
+
+/* MONTH_SIX END-------------------------- */
+/* MONTH_FIVE-------------------------- */
+.month_five {
+    background-color: var(--five-month-color);
+    width: 30%;
+    min-width: 230px;
+    align-items: center;
+}
+.month_five .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    width: 90%;
+    padding-left: 5%;
+}
+.month_five .days-name {
+    display: flex;
+    justify-content: left;
+    padding-top: 3px;
+    height: 15px;
+    width: 90%;
+    padding-left: 5%;
+}
+
+.month_five .day-name {
+    font-size: 10px;
+    width: 10%;
+    padding-left: 2px;
+}
+
+.month_five .cards-container .day {
+    background-color: rgb(5, 35, 73);
+    color: var(--main-bg-color);
+    width: 10%;
+    padding-top: 3px;
+    height: 15px;
+}
+
+.month_five .cards-container .placeholder {
+    display: flex;
+    height: 20px;
+    width: 10%;
+}
+
+/* MONTH_FIVE END-------------------------- */
+/* MONTH_ONE-------------------------- */
+.month_one {
+    background-color: var(--one-month-color);
+}
+
+.month_one .days-name {
+    /* width: 90%; */
+}
+
+.month_one .day-name {
+    display: inline-block;
+
+    color: var(--main-bg-color);
+    width: fit-content;
+    height: fit-content;
+    letter-spacing: 3px;
+    padding: 0 1px;
+    transform: rotateZ(-45deg);
+}
+
+.month_one .cards-container .day {
+    background-color: rgb(5, 35, 73);
+    color: var(--main-bg-color);
+    width: 90%;
+}
+
+.month_one .cards-container .placeholder {
+    width: 90%;
+}
+
+/* MONTH_ONE END-------------------------- */
+
+/*ASIDE MONTH CONTAINER START-------------------------- */
+.aside--months--container {
+    height: 25%;
+    transform: scale(150%);
+}
+.aside--months--container > .month {
+    background-color: transparent;
+    border: none;
+    min-height: 100%;
+}
+
+.aside--months--container .day-name {
+    font-size: 10px;
+    font-weight: 100;
+    transform: rotate(-90deg);
+    letter-spacing: 1px;
+}
+/* #endregion INDIVIDUAL SETTINGS */
+/* #region RESPONSIVITY START */
+
+@media screen and (max-width: 1300px) {
+    body {
+        background-color: gray;
+    }
+
+    #jan {
+        transform: scale(30%);
+    }
+
+    #febr {
+        transform: rotateX(-360deg);
+    }
+
+    #marc {
+        background-color: red;
+        transform: rotate(90deg);
+    }
+    #apr {
+        transform: rotateY(360deg);
+    }
+
+    #may {
+        color: red;
+        font-weight: bold;
+        font-size: larger;
+    }
+    #june {
+        transform: scale(110%);
+    }
+    #july {
+        transform: rotate(-180deg);
+    }
+    #aug {
+        transform: rotate(-45deg);
+    }
+    #sept {
+        color: rgb(0, 64, 255);
+        background-color: bisque;
+        font-weight: bold;
+        font-size: smaller;
+    }
+    #oct {
+        transform: rotate(45deg);
+    }
+    #nov {
+        background-color: white;
+        transform: scale(50%);
+    }
+    #dec {
+        /* background-color: transparent; */
+        background-image: url("../../ICONS/xmasstree.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    body {
+        background-color: rgb(181, 28, 28);
+    }
+
+    #june {
+        transform: scale(110%);
+        background-image: url("../ICONS/summer.jfif");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #july {
+        transform: rotate(-180deg);
+        background-image: url("../ICONS/sun.jfif");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #aug {
+        transform: rotate(-45deg);
+        background-image: url("../ICONS/sumflover.jfif");
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    body {
+        background-color: rgb(74, 28, 181);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        background-color: rgb(74, 28, 181);
+    }
+}
+
+/* SMALL SCREEN: */
+
+@media screen and (max-width: 900px) {
+    time {
+        font-size: 0.5rem;
+    }
+    .cards-container .day {
+        color: var(--main-bg-color);
+        transform: rotateZ(15deg);
+    }
+
+    .month_five .day {
+        transform: rotateZ(-20deg);
+    }
+    /* .months--container > .month_five {
+        transform: rotate(360deg);
+    } */
+
+    .months--container > .month_six {
+        transform: rotate(-360deg);
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .days-name {
+        font-size: 0.5rem;
+    }
+
+    .left--side {
+        display: none;
+    }
+}
+/* #endregion RESPONSIVITY */
